@@ -1,4 +1,4 @@
-import ExpenseItem from './ExpenseItem';
+import ExpensesList from './ExpensesList';
 import ExpenseFilter from './ExpenseFilter';
 import {useState} from 'react';
 import Card from '../UI/Card';
@@ -11,14 +11,13 @@ const Expenses = (props) => {
     const filterOptionHandler = (optionValue) => {
         setFilterOption(optionValue);
     }
-    const expenses = props.expenses;
+    
+    const filteredExpenses = props.expenses.filter(expense => expense.date.toLocaleString('en-US',{year: "numeric"}) === filterOption);
+
     return (
         <Card className="expenses">
             <ExpenseFilter filterValue = {filterOption} onFilterChange = {filterOptionHandler}/>
-            <ExpenseItem date={expenses[0].date} title={expenses[0].title} amount={expenses[0].amount} />
-            <ExpenseItem date={expenses[1].date} title={expenses[1].title} amount={expenses[1].amount} />
-            <ExpenseItem date={expenses[2].date} title={expenses[2].title} amount={expenses[2].amount} />
-            <ExpenseItem date={expenses[3].date} title={expenses[3].title} amount={expenses[3].amount} />
+            <ExpensesList expenseList = {filteredExpenses} />
         </Card>
     );
 }

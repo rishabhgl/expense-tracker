@@ -11,6 +11,8 @@ const AddExpense = (props) => {
         };
         props.onNewExpenseReceived(newExpense);
     };
+
+
     return (<div className='new-expense'>
         <ExpenseForm onFormSubmit = {formSubmitHandler}/>
     </div>);
